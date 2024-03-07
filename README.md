@@ -19,6 +19,12 @@ git push -u origin main
 # Check status
 git status
 git remote -v
+
+# Remove files
+git rm -r folder_name
+## Example:
+git rm -r --cached venv
+
 ```
 
 ## Install requirements
