@@ -15,4 +15,8 @@ git pull
 git add .
 git commit -m "adding readme notes"
 git push -u origin main
+
+# Check status
+git status
+git remote -v
 ```
