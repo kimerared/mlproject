@@ -20,3 +20,8 @@ git push -u origin main
 git status
 git remote -v
 ```
+
+## Install requirements
+```
+ pip install -r requirements.txt
+```
