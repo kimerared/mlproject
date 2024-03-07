@@ -31,3 +31,12 @@ git rm -r --cached venv
 ```
  pip install -r requirements.txt
 ```
+
+## Project Scope
+- Problem Definition
+- Data Collection
+- Data Preparation
+- EDA
+- Data Pre-Processing
+- Model Training
+- Choose Best Model
