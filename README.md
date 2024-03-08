@@ -7,6 +7,10 @@ Using VS Code, type the following commands:
 ```
 conda create -p venv python==3.10 -y
 conda activate venv/
+conda install ipykernel
+
+# Check Virtual Environments
+conda info --envs
 ```
 
 ## Sync project to GitHub
