@@ -44,3 +44,9 @@ git rm -r --cached venv
 - Data Pre-Processing
 - Model Training
 - Choose Best Model
+
+## Data Ingestion
+```
+ # Custom Modules
+ python -m src.components.data_ingestion
+```
