@@ -1,6 +1,5 @@
 import os
 import sys
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
@@ -8,24 +7,11 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
-from src.components.model_trainer import modelTrainer
+from src.components.model_trainer import ModelTrainer
 from src.components.model_trainer import ModelTrainerConfig
 
-
-try:
-    # src_path = os.path.abspath(os.path.join('src'))
-    src_path = sys.path.insert(0, '../src')
-    sys.path.append(src_path)
-except Exception as e:
-    print(f"Error while adding 'src' directory to sys.path: {e}")
-
-try:
-    
-    from src.exception import CustomException
-    from src.logs import logging
-except ModuleNotFoundError as e:
-    print(f"Error importing modules from 'src': {e}")
-
+from src.exception import CustomException
+from src.logs import logging
 
 @dataclass
 class DataIngestionConfig:
@@ -52,20 +38,21 @@ class DataIngestion:
             test_set.to_csv(self.ingestion_config.test_data_dir, index=False, header=True)
             logging.info("Data Ingestion Completed")
 
-            return (
-                self.ingestion_config.train_data_dir,
-                self.ingestion_config.test_data_dir
-            )
+            return self.ingestion_config.train_data_dir, self.ingestion_config.test_data_dir
 
         except Exception as e:
             raise CustomException(e, sys)
+
 
 if __name__ == "__main__":
     obj = DataIngestion()
     train_data, test_data = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
-    train_arr, test_arr = data_transformation.initiate_data_transformation(train_data, test_data)
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data, test_data)
 
-    model_trainer = modelTrainer()
-    print(model_trainer.initiate_model_trainer(train_arr, test_arr))
+    model_trainer = ModelTrainer()
+    
+    result = model_trainer.initiate_model_trainer(train_arr, test_arr)
+    print(result)
+    
